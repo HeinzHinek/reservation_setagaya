@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="main-container" class="col-md-12 text-left">
+
+    <div id="doItBtnDiv" class="text-center">
+        <input type="button" class="btn brn-lg btn-danger" style="margin: 100px auto;" value="DO IT!" onclick="do_check()"/>
+    </div>
+
+    <div id="resultTableDiv" style="display: none;">
+        <table class="table table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>School</th>
+                    <th>Facility</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody id="resultsTbody">
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script>
+    function do_check() {
+        $("#doItBtnDiv").hide();
+        waitingDialog.show('Hang in there man!');
+        $.ajax({
+            url: "/ajax/get_vacancies"
+        }).done(function(data) {
+            waitingDialog.hide();
+            show_results(JSON.parse(data));
+            $("#resultTableDiv").show();
+        }).always(function() {
+            waitingDialog.hide();
+        });
+    }
+
+    function show_results(data) {
+        for (school in data) {
+
+            for (facility in data[school]) {
+                var slots = data[school][facility];
+
+                for (var i = 0; i < slots.length; i++) {
+
+                    var tr = $(document.createElement("tr"));
+
+                    $(tr).append($(document.createElement("td")).html(i === 0 ? school : ""));
+                    $(tr).append($(document.createElement("td")).html(i === 0 ? facility : ""));
+                    $(tr).append($(document.createElement("td")).html(slots[i].date));
+                    $(tr).append($(document.createElement("td")).html(slots[i].slot));
+
+                    $("#resultsTbody").append(tr)
+                }
+            }
+        }
+    }
+</script>
+
+{% endblock %}

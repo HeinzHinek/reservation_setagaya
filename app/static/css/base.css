@@ -1,0 +1,26 @@
+.flash {
+    z-index: 99999;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    border-radius: 0px 0px 6px 6px !important;
+    color: white;
+    -webkit-box-shadow: 2px 2px 3px -1px #8F8F8F;
+    box-shadow: 2px 2px 3px -1px #8F8F8F;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.shadowed-div {
+	position: relative;
+    padding: 30px 10px 20px 10px;
+    background-color: #FFFFFF;
+    box-shadow: 5px 5px 15px 0px rgba(0,0,0,.9);
+}

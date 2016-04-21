@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/base.css" rel="stylesheet" media="screen">
+
+    <script src="/static/js/jquery-1.11.2.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/waitingfor.js"></script>
+
+    {% block head_defs %}{% endblock %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title></title>
+    {% endif %}
+
+    <script>
+        $.ajaxSetup({ cache: false });
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'flash.html' %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+</body>
+
+</html>
