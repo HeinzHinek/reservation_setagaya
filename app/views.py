@@ -15,5 +15,4 @@ def index():
 def get_vacancies():
     checker = vacancy_checker.VacancyChecker()
     data = checker.do_check()
-    print data
     return json.dumps(data)

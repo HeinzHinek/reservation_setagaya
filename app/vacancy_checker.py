@@ -163,8 +163,6 @@ class VacancyChecker:
                 school_code = school_div['onclick'].replace("facSel('", '').replace("')", '')
                 school_name = school_div.find('div', {'class': 'SELTXT'}).string
 
-                print "School: " + school_name
-
                 url = '/reselve/k_ObjSelInitial.do'
                 parameters = {'facide': str(school_code.strip()),
                               'startindex': '0',
