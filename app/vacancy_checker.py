@@ -2,6 +2,7 @@
 import requests
 import re
 import collections
+import time
 
 from bs4 import BeautifulSoup as bs
 from datetime import date, timedelta
@@ -47,6 +48,9 @@ class VacancyChecker:
         self.headers['Referer'] = self.last_url
         curr_url = self.base_url + url
         self.last_url = curr_url
+
+        # wait not to overload the server
+        time.sleep(0.5)
 
         # execute request
         return requests.post(curr_url,

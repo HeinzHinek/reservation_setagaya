@@ -1,0 +1,31 @@
+{% macro render_field(field, label=True, ratio=2) %}
+
+<div class="form-group">
+
+    <label class="col-lg-{{ ratio }} control-label" style="white-space: nowrap;">
+        {% if label %}{{ field.label }}{% endif %}
+    </label>
+
+    <div class="col-lg-{{ 12 - ratio }}">
+        {{ field(autocomplete='off', **kwargs)|safe }}
+
+        {% if field.errors %}
+
+        {% for error in field.errors %}
+        <div role="alert" class="alert-danger custom-alert" onload="showAlert">
+            <button type="button" class="close" tabindex="-1" onclick="$(this).closest('div').hide();">&times;</button>
+            [{{error}}]
+        </div>
+        {% endfor %}
+
+        <script type="text/javascript">
+            $('.alert-danger').hide();
+            $('.alert-danger').show('fast');
+        </script>
+
+        {% endif %}
+    </div>
+
+</div>
+
+{% endmacro %}
